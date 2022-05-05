@@ -14,7 +14,7 @@ namespace AutomationWithoutRunningAppDriver
     {
         static void Main(string[] args)
         {
-            var appiumLocalService = new AppiumServiceBuilder().UsingPort(4723).WithLogFile(new FileInfo(@"C:\Users\felip\source\repos\RunNotePad\TestingLog.txt")).Build();
+            var appiumLocalService = new AppiumServiceBuilder().UsingPort(4723).WithLogFile(new FileInfo(@"C:\Users\felip\source\repos\RunNotePad\TestingLog.txt")).Build(); //using file log eh opcional aqui
             appiumLocalService.Start();
             AppiumOptions ao = new AppiumOptions();
             ao.AddAdditionalCapability("app", "Microsoft.WindowsCalculator_8wekyb3d8bbwe!App");
