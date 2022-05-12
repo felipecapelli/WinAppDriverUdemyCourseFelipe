@@ -15,7 +15,7 @@ namespace CalcRunnerAppium
         {
             WindowsDriver<WindowsElement> sessionCalc;
             AppiumOptions appOptions = new AppiumOptions();
-            /*Para pegar o codigo da calculadora (UWP software)
+            /*Para pegar o codigo da calculadora (UWP software) - para UWP pracisamos pegar o App User Mode ID (Target Field)
                 1)Ir em executar, no windows, e inserir esse comando: shell:appsfolder
                 2)Encontrar a calculadora e criar um atalho no desktop
                 3)Abrir o UI recorder e clicar com o botão direito /  propriedades no atalho da calculadora
@@ -27,6 +27,9 @@ namespace CalcRunnerAppium
                     appOptions
                 );
 
+            //TimeOut
+            sessionCalc.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(2);
+
             var btnTwo = sessionCalc.FindElementByName("Dois");
             btnTwo.Click();
 
@@ -37,8 +40,9 @@ namespace CalcRunnerAppium
 
             var btnEquals = sessionCalc.FindElementByName("Igual a");
             btnEquals.Click();
-
-            var txtField = sessionCalc.FindElementByAccessibilityId("CalculatorResults");//nesse caso pegar o AutomationId
+            
+            //nesse caso pegar o AutomationId
+            var txtField = sessionCalc.FindElementByAccessibilityId("CalculatorResults");
             Console.WriteLine($"Valor mostrado pela calculadora: {txtField.Text}");
 
             if(txtField.Text.EndsWith("4"))
@@ -50,7 +54,8 @@ namespace CalcRunnerAppium
                 Console.WriteLine("O resultado está incorreto");
             }
 
-            txtField.SendKeys(Keys.Escape); // aperta o botão Esc do teclado
+            // aperta o botão Esc do teclado
+            txtField.SendKeys(Keys.Escape); 
 
             txtField.SendKeys("4");
             txtField.SendKeys("+");
